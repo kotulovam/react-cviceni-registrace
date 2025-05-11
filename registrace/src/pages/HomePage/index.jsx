@@ -3,6 +3,7 @@ import './style.css';
 
 export const HomePage = () => {
   const [userName, setUserName] = useState('');
+  const [country, setCountry] = useState('Česká republika');
 
   let message;
   if (userName === '') {
@@ -11,7 +12,7 @@ export const HomePage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Uživatel ${userName} se chce zaregistrovat.`);
+    alert(`Uživatel ${userName} ze země ${country} se chce zaregistrovat.`);
   };
 
   return (
@@ -26,6 +27,18 @@ export const HomePage = () => {
               setUserName(e.target.value);
             }}
           />
+          <label>
+            Země původu:
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+            >
+              <option value="Chorvatsko">Chorvatsko</option>
+              <option value="Česká republika">Česká republika</option>
+              <option value="Polsko">Polsko</option>
+              <option value="Slovenská republika">Slovenská republika</option>
+            </select>
+          </label>
           <button type="submit" disabled={userName === ''}>
             Registrovat
           </button>

@@ -15,3 +15,7 @@ header {
 .message {
   color: red;
 }
+
+label {
+  display: block;
+}
