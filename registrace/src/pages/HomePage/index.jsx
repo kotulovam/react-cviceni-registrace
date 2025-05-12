@@ -4,15 +4,22 @@ import './style.css';
 export const HomePage = () => {
   const [userName, setUserName] = useState('');
   const [country, setCountry] = useState('Česká republika');
+  const [newsletterAccepted, setNewsletterAccepted] = useState(false);
 
   let message;
   if (userName === '') {
     message = <div className="message">Uživatelské jméno je povinný údaj</div>;
   }
 
+  let checkboxMessage = newsletterAccepted
+    ? 'a dostávat pravidelně novinky.'
+    : 'a o novinky nemá zájem.';
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Uživatel ${userName} ze země ${country} se chce zaregistrovat.`);
+    alert(
+      `Uživatel ${userName} ze země ${country} se chce zaregistrovat ${checkboxMessage} `,
+    );
   };
 
   return (
@@ -38,6 +45,14 @@ export const HomePage = () => {
               <option value="Polsko">Polsko</option>
               <option value="Slovenská republika">Slovenská republika</option>
             </select>
+          </label>
+          <label>
+            <input
+              checked={newsletterAccepted}
+              onChange={(e) => setNewsletterAccepted(e.target.checked)}
+              type="checkbox"
+            />
+            Chci pravidelně dostávat novinky do mé e-mailové schránky.
           </label>
           <button type="submit" disabled={userName === ''}>
             Registrovat
